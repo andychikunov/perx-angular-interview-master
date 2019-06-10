@@ -1,0 +1,37 @@
+.header {
+  position: relative;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: right;
+  height: 5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navigation-items {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: right;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-left: 2rem;
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  a:hover, a:active, a.active {
+    color: lightgray;
+  }
+
+}
+

@@ -1,0 +1,17 @@
+<header *ngIf="showHeader$ | async" class="header" [@init]>
+  <ul class="navigation-items">
+    <li>
+      <a routerLink="/"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact:true}">
+        Home
+      </a>
+    </li>
+    <li>
+      <a routerLink="/table" routerLinkActive="active">Table</a>
+    </li>
+    <li>
+      <a routerLink="/directive" routerLinkActive="active">Directive</a>
+    </li>
+  </ul>
+</header>
