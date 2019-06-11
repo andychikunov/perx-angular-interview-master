@@ -27,7 +27,7 @@ import {filter, map, switchMap} from 'rxjs/operators';
 })
 
 export class HeaderComponent implements OnInit {
-  public showHeader$ = new BehaviorSubject(false);
+  public hideHeader$ = new BehaviorSubject(false);
 
   constructor(private router: Router,
               private route: ActivatedRoute) {
@@ -35,25 +35,17 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(e => e instanceof NavigationEnd),
-      map(() => {
-        let child = this.route.firstChild;
-        while (child) {
-          if (child.firstChild) {
-            child = child.firstChild;
-          } else {
-            return child;
-          }
+    this.router.events
+      .pipe(
+        filter(e => e instanceof NavigationEnd),
+        switchMap(() => this.route.firstChild.data)
+      )
+      .subscribe((data) => {
+        const hideHeaderFromConfig = ('hideHeader' in data) && data.hideHeader;
+        if (this.hideHeader$.value !== hideHeaderFromConfig) {
+          this.hideHeader$.next(hideHeaderFromConfig);
         }
-        return this.route;
-      }),
-      switchMap(route => route.data)
-    ).subscribe(data => {
-      if (('showHeader' in data) && this.showHeader$.value !== data.showHeader) {
-        this.showHeader$.next(data.showHeader);
-      }
-    });
+      });
   }
 
 }

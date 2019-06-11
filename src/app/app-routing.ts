@@ -9,22 +9,16 @@ export const appRoutes: Routes = [
     pathMatch: 'full',
     component: HomePageComponent,
     data: {
-      showHeader: false
+      hideHeader: true
     }
   },
   {
     path: 'table',
-    component: BooksTablePageComponent,
-    data: {
-      showHeader: true
-    }
+    component: BooksTablePageComponent
   },
   {
     path: 'directive',
-    component: TextDirectivePageComponent,
-    data: {
-      showHeader: true
-    }
+    component: TextDirectivePageComponent
   },
   {
     path: '**',
