@@ -12,14 +12,14 @@ export interface BookItemInterface {
 }
 
 @Component({
-  selector: 'app-books-table-page',
+  selector: 'perx-books-table-page',
   templateUrl: './books-table-page.component.html',
   styleUrls: ['./books-table-page.component.scss']
 })
 export class BooksTablePageComponent implements OnInit {
 
   public displayedColumns = ['content', 'cover', 'created', 'updated'];
-  public dataSource = new MatTableDataSource<any>();
+  public dataSource = new MatTableDataSource<BookItemInterface>();
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
