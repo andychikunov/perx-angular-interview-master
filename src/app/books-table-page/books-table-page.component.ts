@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import {BooksService} from '../core/services/books.service';
 import {map} from 'rxjs/operators';
@@ -16,16 +16,16 @@ export interface BookItemInterface {
   templateUrl: './books-table-page.component.html',
   styleUrls: ['./books-table-page.component.scss']
 })
-export class BooksTablePageComponent implements OnInit {
+export class BooksTablePageComponent implements AfterViewInit {
 
   public displayedColumns = ['content', 'cover', 'created', 'updated'];
   public dataSource = new MatTableDataSource<BookItemInterface>();
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private booksService: BooksService) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.getBooks();
     this.dataSource.sort = this.sort;
   }
